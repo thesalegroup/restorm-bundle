@@ -2,6 +2,7 @@
     "name": "thesalegroup/restorm-bundle",
     "description": "REST ORM Bundle",
     "license": "MIT",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Robert Treacy",
@@ -10,14 +11,10 @@
     ],
     "require": {
         "php": "^7.1",
-        "thesalegroup/restorm": "dev-master"
+        "thesalegroup/restorm": "dev-master",
+        "symfony/http-kernel": "^3",
+        "symfony/config": "^3.3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/thesalegroup/restorm"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "TheSaleGroup\\RestormBundle\\": "src"
