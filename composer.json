@@ -13,7 +13,8 @@
         "php": "^7.1",
         "thesalegroup/restorm": "dev-master",
         "symfony/http-kernel": "^3",
-        "symfony/config": "^3.3"
+        "symfony/config": "^3.3",
+        "symfony/dependency-injection": "^3.3"
     },
     "autoload": {
         "psr-4": {
