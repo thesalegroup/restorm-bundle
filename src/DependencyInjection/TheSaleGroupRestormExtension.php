@@ -38,6 +38,8 @@ class TheSaleGroupRestormExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container)
     {
-        // ... you'll load the files here later
+        $configuration = new Configuration;
+        
+        $config = $this->processConfiguration($configuration, $configs);
     }
 }
