@@ -14,7 +14,8 @@
         "thesalegroup/restorm": "dev-master",
         "symfony/http-kernel": "^3",
         "symfony/config": "^3",
-        "symfony/dependency-injection": "^3"
+        "symfony/dependency-injection": "^3",
+        "sensio/framework-extra-bundle": "^3"
     },
     "autoload": {
         "psr-4": {

@@ -41,5 +41,10 @@ THE SOFTWARE.
             <factory class="TheSaleGroup\Restorm\EntityManager" method="createFromConfiguration" />
             <argument type="service" id="thesalegroup.restorm.configuration" />
         </service>
+
+        <service id="thesalegroup.restorm.entity_param_converter" class="TheSaleGroup\RestormBundle\Request\ParamConverter\EntityConverter">
+            <argument type="service" id="thesalegroup.restorm.entity_manager" />
+            <tag name="request.param_converter" />
+        </service>
     </services>
 </container>
