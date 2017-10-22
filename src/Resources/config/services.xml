@@ -46,5 +46,10 @@ THE SOFTWARE.
             <argument type="service" id="thesalegroup.restorm.entity_manager" />
             <tag name="request.param_converter" />
         </service>
+
+        <service id="thesalegroup.restorm.unique_entity_validator" class="TheSaleGroup\RestormBundle\Validator\Constraints\UniqueEntityValidator">
+            <argument type="service" id="thesalegroup.restorm.entity_manager" />
+            <tag name="validator.constraint_validator" />
+        </service>F
     </services>
 </container>
