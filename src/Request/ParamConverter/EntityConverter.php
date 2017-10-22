@@ -51,7 +51,7 @@ class EntityConverter implements ParamConverterInterface
     {
         $entityMapping = $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
         
-        $identifierValue = $request->attributes->get($configuration->getName());
+        $identifierValue = $this->getIdentifierValue($request, $configuration->getName());
         
         if(!$identifierValue) {
             return false;
@@ -73,5 +73,10 @@ class EntityConverter implements ParamConverterInterface
         $entitymapping = $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
         
         return (bool) $entitymapping;
+    }
+    
+    protected function getIdentifierValue(Request $request, $name)
+    {
+        return $request->attributes->get($name);
     }
 }
