@@ -28,24 +28,28 @@ namespace TheSaleGroup\RestormBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Description of UniqueEntity
+ * @Annotation
  *
  * @author Rob Treacy <robert.treacy@thesalegroup.co.uk>
  */
 class UniqueEntity extends Constraint
 {
     public $message = 'This value is already used.';
-    
     public $fields = array();
     public $class;
-    
+
     public function getRequiredOptions(): array
     {
         return array('fields', 'class');
     }
-    
+
     public function getDefaultOption(): string
     {
         return 'fields';
+    }
+
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
     }
 }
