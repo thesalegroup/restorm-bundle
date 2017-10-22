@@ -49,8 +49,6 @@ class EntityConverter implements ParamConverterInterface
 
     public function apply(Request $request, ParamConverter $configuration): bool
     {
-        $entityMapping = $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
-        
         $identifierValue = $this->getIdentifierValue($request, $configuration->getName());
         
         if(!$identifierValue) {
