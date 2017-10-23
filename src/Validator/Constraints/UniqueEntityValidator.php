@@ -78,7 +78,7 @@ class UniqueEntityValidator extends ConstraintValidator
             return;
         }
 
-        $entityMetadata = $this->entityManager->getEntityMetadataRegister()->getEntityMetadata($value) ?: $this->createEntityMetadata($value);
+        $entityMetadata = $this->entityManager->getEntityMetadataRegister()->getEntityMetadata($value) ?: $this->createEntityMetadata($value, $entityClass);
 
         $filter = array();
         foreach($fields as $field) {
@@ -103,7 +103,7 @@ class UniqueEntityValidator extends ConstraintValidator
         }
     }
 
-    private function createEntityMetadata($entity): EntityMetadata
+    private function createEntityMetadata($entity, string $entityClass): EntityMetadata
     {
         $entityMapping = $this->entityManager->getEntityMappingRegister()->getEntityMapping($entityClass);
         $entityMetadata = new EntityMetadata($entity, $entityMapping);
