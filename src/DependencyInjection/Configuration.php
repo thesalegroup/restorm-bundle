@@ -133,6 +133,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('map_from')->end()
                                     ->booleanNode('read_only')->end()
                                     ->booleanNode('dynamic')->end()
+                                    ->booleanNode('multiple')->end()
                                     ->scalarNode('entity')->end()
                                 ->end()
                             ->end()
