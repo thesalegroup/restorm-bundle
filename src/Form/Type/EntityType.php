@@ -56,6 +56,9 @@ class EntityType extends AbstractType
             function($entity) {
             return $entity ? $this->entityManager->getEntityMetadataRegister()->getEntityMetadata($entity)->getIdentifierValue() : null;
         }, function($identifier) use ($options) {
+            if ($identifier === null) {
+                return null;
+            }
             $entityClass = $options['class'];
             return $this->entityManager->getRepository($entityClass)->findOne($identifier);
         }));
