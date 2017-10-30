@@ -29,6 +29,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInte
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use TheSaleGroup\Restorm\EntityManager;
+use TheSaleGroup\Restorm\Mapping\Exception\UnknownEntityException;
 
 /**
  * Description of EntityConverter
@@ -68,9 +69,13 @@ class EntityConverter implements ParamConverterInterface
             return false;
         }
         
-        $entitymapping = $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
+        try {
+            $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
+        } catch (UnknownEntityException $e) {
+            return false;
+        }
         
-        return (bool) $entitymapping;
+        return true;
     }
     
     protected function getIdentifierValue(Request $request, $name)
