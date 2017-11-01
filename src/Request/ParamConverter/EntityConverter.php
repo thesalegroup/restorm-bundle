@@ -30,6 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use TheSaleGroup\Restorm\EntityManager;
 use TheSaleGroup\Restorm\Mapping\Exception\UnknownEntityException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Description of EntityConverter
@@ -57,6 +58,10 @@ class EntityConverter implements ParamConverterInterface
         }
         
         $entity = $this->entityManager->getRepository($configuration->getClass())->findOne($identifierValue);
+        
+        if(!$entity) {
+            throw new NotFoundHttpException(sprintf('Resource with identifier "%s" not found.', $identifierValue));
+        }
         
         $request->attributes->set($configuration->getName(), $entity);
         
