@@ -60,7 +60,7 @@ class EntityConverter implements ParamConverterInterface
         $entity = $this->entityManager->getRepository($configuration->getClass())->findOne($identifierValue);
         
         if(!$entity) {
-            throw new NotFoundHttpException(sprintf('Resource with identifier "%s" not found.', $identifierValue));
+            throw new NotFoundHttpException(sprintf('Resource not found.', $identifierValue));
         }
         
         $request->attributes->set($configuration->getName(), $entity);
