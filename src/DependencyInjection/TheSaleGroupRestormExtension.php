@@ -48,6 +48,6 @@ class TheSaleGroupRestormExtension extends Extension
         
         $configurationDefinition = $container->getDefinition('thesalegroup.restorm.configuration');
         $configurationDefinition->addArgument($config);
-        $configurationDefinition->addArgument($container->get('event_dispatcher'));
+        $configurationDefinition->addArgument('event_dispatcher');
     }
 }
