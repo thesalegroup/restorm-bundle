@@ -25,9 +25,9 @@
 
 namespace TheSaleGroup\RestormBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use TheSaleGroup\RestormBundle\DependencyInjection\Configuration;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
@@ -38,7 +38,6 @@ use Symfony\Component\Config\FileLocator;
  */
 class TheSaleGroupRestormExtension extends Extension
 {
-
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration;
@@ -50,5 +49,6 @@ class TheSaleGroupRestormExtension extends Extension
         
         $configurationDefinition = $container->getDefinition('thesalegroup.restorm.configuration');
         $configurationDefinition->addArgument($config);
+        $configurationDefinition->addArgument(new Reference('event_dispatcher'));
     }
 }
