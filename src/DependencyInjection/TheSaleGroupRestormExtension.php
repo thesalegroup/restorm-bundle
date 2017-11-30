@@ -25,6 +25,7 @@
 
 namespace TheSaleGroup\RestormBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -48,6 +49,6 @@ class TheSaleGroupRestormExtension extends Extension
         
         $configurationDefinition = $container->getDefinition('thesalegroup.restorm.configuration');
         $configurationDefinition->addArgument($config);
-        $configurationDefinition->addArgument('event_dispatcher');
+        $configurationDefinition->addArgument(new Reference('event_dispatcher'));
     }
 }
