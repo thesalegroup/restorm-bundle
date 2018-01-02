@@ -65,6 +65,7 @@ class Configuration implements ConfigurationInterface
                                     ->scalarNode('page_total_header')->end()
                                     ->scalarNode('current_page_header')->end()
                                 ->end()
+                            ->end()
                             ->scalarNode('filter_mode')
                                 ->defaultValue('query')
                             ->end()
