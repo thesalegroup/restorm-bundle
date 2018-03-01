@@ -53,7 +53,7 @@ class EntityConverter implements ParamConverterInterface
     {
         $identifierValue = $this->getIdentifierValue($request, $configuration->getName());
         
-        if(!$identifierValue) {
+        if($identifierValue === null) {
             return false;
         }
         
