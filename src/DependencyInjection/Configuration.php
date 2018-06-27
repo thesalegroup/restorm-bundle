@@ -35,11 +35,11 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  */
 class Configuration implements ConfigurationInterface
 {
-    
+
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder;
-        
+
         $treeBuilder->root('thesalegroup_restorm')
             ->isRequired()
             ->children()
@@ -141,13 +141,14 @@ class Configuration implements ConfigurationInterface
                                     ->booleanNode('multiple')->end()
                                     ->scalarNode('entity')->end()
                                     ->booleanNode('inline')->end()
+                                    ->scalarNode('inverse_field')->end()
                                 ->end()
                             ->end()
                         ->end()
                     ->end()
                 ->end()
             ->end();
-        
+
         return $treeBuilder;
     }
 }
