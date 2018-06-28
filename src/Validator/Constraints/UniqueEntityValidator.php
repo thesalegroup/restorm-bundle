@@ -44,7 +44,7 @@ class UniqueEntityValidator extends ConstraintValidator
      */
     private $entityManager;
 
-    function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -84,21 +84,21 @@ class UniqueEntityValidator extends ConstraintValidator
         foreach($fields as $field) {
             $filter[$field] = $entityMetadata->getPropertyValue($field);
         }
-        
+
         $existingEntities = $this->entityManager->getRepository($entityClass)->find($filter, 1, 2);
-        
+
         if(count($existingEntities) === 0) {
             return;
         }
-        
+
         foreach($existingEntities as $existingEntity) {
             if($existingEntity === $value) {
                 continue;
             }
-            
+
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
-            
+
             break;
         }
     }

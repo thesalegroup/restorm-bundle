@@ -44,7 +44,7 @@ class EntityConverter implements ParamConverterInterface
      */
     private $entityManager;
 
-    function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -52,19 +52,19 @@ class EntityConverter implements ParamConverterInterface
     public function apply(Request $request, ParamConverter $configuration): bool
     {
         $identifierValue = $this->getIdentifierValue($request, $configuration->getName());
-        
+
         if($identifierValue === null) {
             return false;
         }
-        
+
         $entity = $this->entityManager->getRepository($configuration->getClass())->findOne($identifierValue);
-        
+
         if(!$entity) {
             throw new NotFoundHttpException(sprintf('Resource not found.', $identifierValue));
         }
-        
+
         $request->attributes->set($configuration->getName(), $entity);
-        
+
         return true;
     }
 
@@ -73,16 +73,16 @@ class EntityConverter implements ParamConverterInterface
         if(!$configuration->getClass()) {
             return false;
         }
-        
+
         try {
             $this->entityManager->getEntityMappingRegister()->getEntityMapping($configuration->getClass());
         } catch (UnknownEntityException $e) {
             return false;
         }
-        
+
         return true;
     }
-    
+
     protected function getIdentifierValue(Request $request, $name)
     {
         return $request->attributes->get($name);
