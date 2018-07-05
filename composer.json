@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "thesalegroup/restorm": "dev-master",
+        "thesalegroup/restorm": "^0.1",
         "symfony/http-kernel": "^3",
         "symfony/config": "^3",
         "symfony/dependency-injection": "^3",
